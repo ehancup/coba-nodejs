@@ -4,6 +4,7 @@ import session from 'express-session';
 import cookieParser from 'cookie-parser';
 import flash from 'connect-flash'
 import methodOverride from 'method-override';
+import ServerlessHttp from 'serverless-http';
 
 import validator from 'express-validator';
 const { body , validationResult , check } = validator
@@ -195,3 +196,7 @@ app.use('/',router)
 app.listen(port, () => {
     console.log(`Mongoose contact app | listening on http://localhost:${port}`);
 })
+
+const handler = ServerlessHttp(app)
+
+export default { handler }
