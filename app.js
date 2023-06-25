@@ -193,9 +193,9 @@ router.get('/contact/:nama', async (req, res) => {
 
 app.use('/.netlify',router)
 
-app.listen(port, () => {
-    console.log(`Mongoose contact app | listening on http://localhost:${port}`);
-})
+// app.listen(port, () => {
+//     console.log(`Mongoose contact app | listening on http://localhost:${port}`);
+// })
 
 const handler = ServerlessHttp(app)
 

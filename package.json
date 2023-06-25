@@ -5,7 +5,8 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "start": "node app"
+    "start": "./node_modules/.bin/netlify-lambda serve arc",
+    "build": "./node_modules/.bin/netlify-lambda build arc"
   },
   "author": "hancup",
   "license": "ISC",
@@ -19,6 +20,7 @@
     "express-validator": "^7.0.1",
     "method-override": "^3.0.0",
     "mongoose": "^7.3.1",
+    "netlify-lambda": "^2.0.16",
     "serverless-http": "^3.2.0",
     "session": "^0.1.0"
   }
