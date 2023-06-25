@@ -5,7 +5,7 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "start": "./node_modules/.bin/netlify-lambda serve arc",
+    "start": "node app.js",
     "build": "./node_modules/.bin/netlify-lambda build arc"
   },
   "author": "hancup",
