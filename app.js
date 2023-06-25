@@ -4,7 +4,6 @@ import session from 'express-session';
 import cookieParser from 'cookie-parser';
 import flash from 'connect-flash'
 import methodOverride from 'method-override';
-import ServerlessHttp from 'serverless-http';
 
 import validator from 'express-validator';
 const { body , validationResult , check } = validator
@@ -15,7 +14,7 @@ import Contact from './model/contact.js';
 
 const app = express();
 const router = express.Router();
-const port = 3000
+const port = process.env.PORT || 3000
 
 // ? set up method override
 app.use(methodOverride('_method'))
@@ -191,12 +190,12 @@ router.get('/contact/:nama', async (req, res) => {
     res.render('detail', { title : 'halaman detail', layout : 'layouts/main-lay' , contact , nama })
 })
 
-app.use('/.netlify/functions/app',router)
+app.use('/',router)
 
-// app.listen(port, () => {
-//     console.log(`Mongoose contact app | listening on http://localhost:${port}`);
-// })
+app.listen(port, () => {
+    console.log(`Mongoose contact app | listening on http://localhost:${port}`);
+})
 
-const handler = ServerlessHttp(app)
+// const handler = ServerlessHttp(app)
 
-export default { handler }
+// export default { handler }
