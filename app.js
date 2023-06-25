@@ -4,17 +4,29 @@ import session from 'express-session';
 import cookieParser from 'cookie-parser';
 import flash from 'connect-flash'
 import methodOverride from 'method-override';
+import mongoose from "mongoose";
+
 
 import validator from 'express-validator';
 const { body , validationResult , check } = validator
 
 
-import('./utils/db.js')   
+// import('./utils/db.js')   
 import Contact from './model/contact.js';
 
 const app = express();
 const router = express.Router();
 const port = process.env.PORT || 3000
+
+const connectDB = async () => {
+    try {
+      const conn = await mongoose.connect('mongodb+srv://hancup:hancup20@cluster0.gpzjnio.mongodb.net/ehan');
+      console.log(`MongoDB Connected: ${conn.connection.host}`);
+    } catch (error) {
+      console.log(error);
+      process.exit(1);
+    }
+  }
 
 // ? set up method override
 app.use(methodOverride('_method'))
@@ -192,9 +204,15 @@ router.get('/contact/:nama', async (req, res) => {
 
 app.use('/',router)
 
-app.listen(port, () => {
-    console.log(`Mongoose contact app | listening on http://localhost:${port}`);
+connectDB().then(() => {
+    app.listen(port, () => {
+        console.log("listening for requests");
+    })
 })
+
+// app.listen(port, () => {
+//     console.log(`Mongoose contact app | listening on http://localhost:${port}`);
+// })
 
 // const handler = ServerlessHttp(app)
 
