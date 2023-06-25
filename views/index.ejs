@@ -1,0 +1,16 @@
+
+    <h1 class="text-3xl">belajar web server</h1>
+    <a href="/about">test</a>
+
+
+    <h2>nama saya <%= name %></h2>
+    <h2> <%= search %></h2>
+
+    <h1>daftar akun</h1>
+
+    <% akun.forEach(e => { %>
+     <ul>
+        <li>nama : <%= e.nama %></li>
+        <li>umur : <%= e.umur %></li>
+     </ul>
+    <% }) %>

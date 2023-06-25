@@ -1,0 +1,52 @@
+
+<div class="w-full h-20 bg-slate-800 flex flex-row justify-between items-center px-9">
+    <div class="">
+        <h1 class="text-4xl text-white font-bold font-mono">Ehan<span class="text-green-300">Contact</span></h1>
+    </div>
+    <div class="h-8 flex overflow-hidden rounded-full">
+        <input type="search" name="search" id="skontak" placeholder="cari kontak" class="w-96 h-full px-6" onkeydown="enter(event)">
+        <button class="px-4 h-full text-white bg-blue-600" id="bkontak">search</button>
+    </div>
+    <div class="">
+        <ul class="flex flex-row gap-10">
+            <li class="text-white text-xl font-mono"><a href="/" class="">Home</a></li>
+            <li class="text-white text-xl font-mono"><a href="/about" class="">About</a></li>
+            <li class="text-white text-xl font-mono"><a href="/contact" class="">Contact</a></li>
+        </ul>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    const button = document.querySelector('#bkontak');
+
+    const sfunc = () => {
+        const search = document.querySelector('#skontak');
+        console.log(search);
+
+        let value = search.value;
+        value = value.split(' ');
+        value = value.join('+');
+        console.log(value);
+
+        window.location.href = `/contact/?s=${value}`
+        
+        
+    }
+
+    
+    
+    button.addEventListener('click', () => {
+
+        sfunc();
+    })
+
+    const enter = (event) => {
+        let key = event.key;
+
+        if (key === 'Enter') {
+            sfunc();
+        }
+    }
+
+</script>

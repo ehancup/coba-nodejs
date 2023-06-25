@@ -1,0 +1,29 @@
+<div class="w-full p-5 flex flex-row justify-between items-center">
+    <h1 class="font-bold text-6xl">Detail Kontak</h1>
+
+</div>
+
+<% if (!contact) { %>
+    <div class="w-full py-3 px-6 bg-red-600 bg-opacity-10 rounded mx-5">
+        <a href="/contact" class="font-mono text-red-700 underline">Kontak <%= nama  %> ditemukan. kembali ke daftar kontak</a>
+    </div>
+<% } else { %>
+
+<div class="w-full grid grid-cols-4 gap-5 p-5">
+    <div class="bg-blue-300 rounded-lg px-6 py-3 flex flex-col  font-mono border-2 border-blue-900">
+        <h1 class="text-3xl font-bold"> <%= contact.nama  %></h1>
+        <h1 class="text-base text-slate-600"><%= contact.nomor  %></h1>
+        <h1 class="text-base"><%= contact.email  %></h1>
+        <div class="flex flex-row gap-2">
+            <a href="/contact" class="mt-2 px-2 py-1 rounded-full bg-blue-900 text-white text-sm w-fit border-2 border-blue-900 hover:bg-transparent hover:text-blue-900 transition-colors duration-300 flex flex-row gap-1 items-center"><ion-icon name="chevron-back-outline" class="text-base"></ion-icon>back</a>
+            <a href="/contact/edit/<%= contact.nama %>"  class="mt-2 px-2 py-1 rounded-full bg-blue-900 text-white text-sm w-fit border-2 border-blue-900 hover:bg-transparent hover:text-blue-900 transition-colors duration-300 flex flex-row gap-1 items-center"><ion-icon name="create-outline"></ion-icon>edit</a>
+            <!-- <a href="/contact/delete/<%= contact.nama %>" onclick="return confirm('yakin?')" class="mt-2 px-2 py-1 rounded-full bg-red-900 text-white text-sm w-fit border-2 border-red-900 hover:bg-transparent hover:text-red-900 transition-colors duration-300 flex flex-row gap-1 items-center"><ion-icon name="trash-outline" class="text-base"></ion-icon>delete</a> -->
+            <form action="/contact?_method=DELETE" method="POST">
+                <input type="hidden" name="nama" value="<%= contact.nama %>">
+                <button type="submit" class="mt-2 px-2 py-1 rounded-full bg-red-900 text-white text-sm w-fit border-2 border-red-900 hover:bg-transparent hover:text-red-900 transition-colors duration-300 flex flex-row gap-1 items-center" onclick="return confirm('yakin?')"><ion-icon name="trash-outline" class="text-base"></ion-icon>delete</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<% } %>

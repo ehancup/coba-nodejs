@@ -1,0 +1,29 @@
+<div class="w-full p-5 flex flex-row justify-between items-center">
+    <h1 class="font-bold text-6xl">Daftar Kontak</h1>
+    <a href="/contact/Add" class="px-4 py-2 rounded-full bg-blue-900 text-white text-lg w-fit border-2 border-blue-900 hover:bg-transparent hover:text-blue-900 transition-colors duration-300 flex flex-row gap-1 items-center"><ion-icon name="person-add-outline" class="text-xl"></ion-icon>Add</a>
+</div>
+
+<% if (msg.length !== 0) { %>
+    <div class="w-full p-5 flex flex-row justify-between items-center bg-green-400 bg-opacity-20 rounded ">
+        <h1 class="font-bold text-green-700 text-xl"><%= msg %></h1>
+    </div>
+<% } %>
+
+
+<% if (contacts.length < 1) { %>
+
+    <div class="">kontak tidak ditemukan</div>
+<% } %>
+<div class="w-full grid grid-cols-5 gap-5 p-5">
+
+    <% contacts.forEach(e => { %>
+     
+        
+        <div class="bg-blue-300 rounded-lg px-6 py-3 flex flex-col gap-1 font-mono border-2 border-blue-900">
+            <h1 class="text-3xl font-bold"> <%= e.nama %></h1>
+            <h1 class="text-base"><%= e.nomor %></h1>
+            <a href="/contact/<%= e.nama  %>" class="px-2 py-1 rounded-full bg-blue-900 text-white text-sm w-fit border-2 border-blue-900 hover:bg-transparent hover:text-blue-900 transition-colors duration-300 flex flex-row gap-1 items-center"><ion-icon name="help-circle-outline" class="text-base"></ion-icon>Detail</a>
+        </div>
+    <% }) %>
+
+</div>
