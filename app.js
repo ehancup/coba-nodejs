@@ -13,6 +13,7 @@ import('./utils/db.js')
 import Contact from './model/contact.js';
 
 const app = express();
+const router = express.Router();
 const port = 3000
 
 // ? set up method override
@@ -43,7 +44,7 @@ app.use(flash());
 
 
 // ? Halaman home
-app.get('/', (req, res) => {
+router.get('/', (req, res) => {
     // res.sendFile('./index.html' , { root : './views'});
     const akun = [
         {
@@ -62,11 +63,11 @@ app.get('/', (req, res) => {
     res.render('index', { name : 'rehan ucup', search : req.query.search , akun , layout : 'layouts/main-lay' , title : 'home'});
 })
 
-app.get('/about', (req, res) => {
+router.get('/about', (req, res) => {
     res.render('about', { title : 'About', layout : 'layouts/main-lay' });
 })
 
-app.get('/contact/add', (req, res) => {
+router.get('/contact/add', (req, res) => {
 
     res.render('addcon', {title : 'Add contact', layout: 'layouts/main-lay'} )
 })
@@ -104,7 +105,7 @@ app.post('/contact',[
 
 })
 
-app.get('/contact', async (req, res) => {
+router.get('/contact', async (req, res) => {
 
     const value = req.query.s
     // console.log(value);
@@ -123,7 +124,7 @@ app.get('/contact', async (req, res) => {
 
 })
 
-app.get('/contact/edit/:nama', async(req, res) => {
+router.get('/contact/edit/:nama', async(req, res) => {
     const contact = await Contact.findOne({nama: req.params.nama})
 
     res.render('editcon', {title: 'edit contact', layout: 'layouts/main-lay', contact})
@@ -180,7 +181,7 @@ app.delete('/contact',async (req, res) => {
     res.redirect('/contact')
 })
 
-app.get('/contact/:nama', async (req, res) => {
+router.get('/contact/:nama', async (req, res) => {
     const nama = req.params.nama
     const contact = (await Contact.find()).find(e => e.nama == nama)
     // console.log(contact);
@@ -188,6 +189,8 @@ app.get('/contact/:nama', async (req, res) => {
 
     res.render('detail', { title : 'halaman detail', layout : 'layouts/main-lay' , contact , nama })
 })
+
+app.use('/',router)
 
 app.listen(port, () => {
     console.log(`Mongoose contact app | listening on http://localhost:${port}`);
