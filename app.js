@@ -191,7 +191,7 @@ router.get('/contact/:nama', async (req, res) => {
     res.render('detail', { title : 'halaman detail', layout : 'layouts/main-lay' , contact , nama })
 })
 
-app.use('/',router)
+app.use('/.netlify',router)
 
 app.listen(port, () => {
     console.log(`Mongoose contact app | listening on http://localhost:${port}`);
