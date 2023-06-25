@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node app.js",
-    "build": "./node_modules/.bin/netlify-lambda build arc"
+    "dev": "nodemon app"
   },
   "author": "hancup",
   "license": "ISC",
@@ -21,5 +21,8 @@
     "method-override": "^3.0.0",
     "mongoose": "^7.3.1",
     "session": "^0.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
   }
 }
