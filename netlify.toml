@@ -1,0 +1,7 @@
+[dev]
+    command = "nodemon app"
+    targetPort = 3000
+
+[[edge_functions]]
+function = "hello"
+path = "/test"
